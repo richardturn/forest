@@ -20,3 +20,5 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/forest/{name}', [App\Http\Controllers\ForestFireController::class, 'show'])->name('forest.show');
+
