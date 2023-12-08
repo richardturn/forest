@@ -15,7 +15,7 @@
                     <th>Fire Size</th>
                     <th>Fire Size Class</th>
                     <th>Owner</th>
-                    <th>Stae</th>
+                    <th>State</th>
                 </thead>
                 <tbody>
                     @foreach($fires as $fire)
