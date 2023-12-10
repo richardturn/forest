@@ -22,7 +22,7 @@ Due to the discovery and contained dates also being in the Julian format, I have
 The controllers have also used Route Model Binding where available, the functions have also had return types added.
 
 ### Serving the application
-When the code is down you need t run the following commands:
+When the code is down you need to run the following commands:
 
     composer install
     npm install
