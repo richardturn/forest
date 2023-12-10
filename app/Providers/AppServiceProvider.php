@@ -37,5 +37,12 @@ class AppServiceProvider extends ServiceProvider
             }
         );
 
+        Blade::directive(
+            'date',
+            function ($date) {
+                return "<?php echo  $date ? \Carbon\Carbon::parse($date)->format('d/m/Y') : 'N/A'; ?>";
+            }
+        );
+
     }
 }

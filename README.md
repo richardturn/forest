@@ -11,6 +11,12 @@ The max container width has been limited to 800px.
 
 In addition to the above, I have also added a route located at /native_php, this works the same as the main index, but it uses the default PDO connector and also manual pagination using skip and limit.
 
+The models have had to be overridden to point to the correct table and the correct primary key, normally this wouldnt be required when following the Laravel naming convention.
+
+In the AppServiceProvider.php, I have added some Blade Directives, this means that when using things like numbers and dates, you can use the directive to display them in the correct format. 
+
+
+
 ### Commands
 To serve the application you can use  the below command in the base directory. 
 
@@ -67,3 +73,5 @@ This again will be indexed and will speed up laoding speed.
 * Add filtering on the fire table so this can be further filtered on items such as discovery date, cause etc. 
 * Add a dashboard for each forest that will show a summary of information like number of fires through the last year, statistics on cause, this will allow
 the users to find statistical information easier.
+* I would also add factories and tests to the application, the reason they werent currently added was due to the way the database is currently structured, it was difficult to write
+factories. For example, Forests are technically in the fire table rather than an individual table, so the factory would have to create a full fire table.

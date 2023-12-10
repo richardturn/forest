@@ -20,10 +20,10 @@
                         <tr>
                             <td>{{ $fire->FPA_ID }}</td>
                             <td>{{ $fire->FIRE_NAME }}</td>
-                            <td>{{ $fire->DISCOVERY_DATE }}</td>
+                            <td>@date($fire->DISCOVERY_DATE)</td>
                             <td>@time($fire->DISCOVERY_TIME)</td>
                             <td>{{ $fire->STAT_CAUSE_DESCR }}</td>
-                            <td>{{ $fire->contained_date }}</td>
+                            <td>@date($fire->contained_date)</td>
                             <td>@time($fire->CONT_TIME)</td>
                             <td>{{ $fire->FIRE_SIZE_CLASS }}</td>
                         </tr>

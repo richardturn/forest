@@ -32,9 +32,4 @@ class Fire extends Model
     {
         return Carbon::parse(jdtojulian($this->CONT_DATE));
     }
-
-    //relation
-    //NWCG_REPORTING_AGENCY = Active National Wildlife Coordinating Group (NWCG) Unit Identifier for the agency preparing the fire report (BIA = Bureau of Indian Affairs, BLM = Bureau of Land Management, BOR = Bureau of Reclamation, DOD = Department of Defense, DOE = Department of Energy, FS = Forest Service, FWS = Fish and Wildlife Service, IA = Interagency Organization, NPS = National Park Service, ST/C&L = State, County, or Local Organization, and TRIBE = Tribal Organization).
-
-    //NWCG_REPORTING_UNIT_ID - unit table
 }
