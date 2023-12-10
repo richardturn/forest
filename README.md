@@ -1,33 +1,69 @@
-To serve the application you can use  the below command in the route. 
+# Forest Fire App
 
-php artisan serve 
+### Summary
+The application assumes the sqlite database is located in the database folder. Upon connecting, I take a distinct of the NWCG_REPORTING_AGENCY, NWCG_REPORTING_UNIT_ID and NWCG_REPORTING_UNIT_NAME, as well as the 
+count of the number of fires. I paginate this data and then use it to display all unique forests for the main index. 
 
-To run style fix you can run
-./vendor/bin/pint
+I have added a show for the agency, which takes the unit id and connects to the NWCG_UnitIDActive_20170109 to return additional information of the Unit, this has been added as a model.
+I have also added a link from the forest to list the fires, I have created this as the Fire model.
 
-To run test
-php artisan test
+The max container width has been limited to 800px.
 
-to build the assets
+In addition to the above, I have also added a route located at /native_php, this works the same as the main index, but it uses the default PDO connector and also manual pagination using skip and limit.
 
-npm run dev
-or 
-npm run build
+### Commands
+To serve the application you can use  the below command in the base directory. 
 
+    php artisan serve 
 
-I pulled the forest as a distinct from the table, you can then either click the unit id, to view detailed information on the unit. 
-or you can click the forest name, which will detail all forest fires in that location. 
+To run style fix you can run the following command, which will check agains the base Laravel styling and automatically fix.
 
-I have an additional controller located at /native_php, this is just to show connecting and getting the data from the native PDO application. 
-This also shows custom pagination. 
+    ./vendor/bin/pint
 
+To build the assets, you can run the below for development 
 
+    npm run dev
 
-Changes
-I would make the following changes if i was doing this in a real life project rather than a prototype:
+Or you can run the following for production
 
-* I would import and parse the forests in its own forest table, would then make a model and relationship accordingly. 
-* Link up with google maps using the long and lat to display the location on a map of the fire.
-* Add ability to export fire data.
+    npm run build
+
+### Production CHanges / Additional Functionality
+If i was to do this as a production application, I would do the following additional features or changes:
+
+#### New table structure
+When working with the data, I would have parse and store the data into multiple tables:
+    * Forests - This will be all the forest information.
+    * Fire - Which will be all the fire information with the forest id
+    * Unit - Which will be all Agency Units
+    * Agency - All information on the Agencys
+The above will allow me to create individual models for the data, and then link them together using relationships. This should allow us to optimise the speed.
+
+For example, the above would mean the index would become
+
+    public function index(): View
+    {
+        $forests = Forest->paginate(15);
+
+        return view('home')
+            ->with('forests', $forests);
+    }
+Which will return all non deleted forests, and will be indexed to increase speed. 
+
+The fires index will then become
+
+    public function show(Forest $forest): View
+    {
+        $fires = $forest->fire()->paginate(15);
+
+        return view('forest.show')
+            ->with('fires', $fires);
+    }
+This again will be indexed and will speed up laoding speed.
+
+#### Additional Functionality
+* Link up with google maps using the longitude and latitude to display the location on a map of the fire location.
+* Add ability to export fire data to Excel, for dealing with additional data reporting.
 * Add filtering on the fire table so this can be further filtered on items such as discovery date, cause etc. 
-* 
+* Add a dashboard for each forest that will show a summary of information like number of fires through the last year, statistics on cause, this will allow
+the users to find statistical information easier.
