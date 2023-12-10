@@ -17,8 +17,10 @@ In the AppServiceProvider.php, I have added some Blade Directives, this means th
 
 Due to the discovery and contained dates also being in the Julian format, I have added an attribute to the model, that auto converts them to a Carbon date for easier use.
 
+The controllers have also used Route Model Binding where available, the functions have also had return types added.
+
 ### Commands
-To serve the application you can use  the below command in the base directory. 
+To serve the application you can use  the below command in the base directory.
 
     php artisan serve 
 
