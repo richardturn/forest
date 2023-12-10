@@ -1,6 +1,8 @@
 # Forest Fire App
 
 ### Summary
+ I have used Laravel Breeze for the scaffold, to quickly have a good-looking design.
+
 The application assumes the sqlite database is located in the database folder. Upon connecting, I take a distinct of the NWCG_REPORTING_AGENCY, NWCG_REPORTING_UNIT_ID and NWCG_REPORTING_UNIT_NAME, as well as the 
 count of the number of fires. I paginate this data and then use it to display all unique forests for the main index. 
 
@@ -13,7 +15,7 @@ In addition to the above, I have also added a route located at /native_php, this
 
 The models have had to be overridden to point to the correct table and the correct primary key, normally this wouldnt be required when following the Laravel naming convention.
 
-In the AppServiceProvider.php, I have added some Blade Directives, this means that when using things like numbers and dates, you can use the directive to display them in the correct format. 
+In the AppServiceProvider.php, I have added some Blade Directives, when using numbers and dates, you can use the directive to display them in the correct format. 
 
 Due to the discovery and contained dates also being in the Julian format, I have added an attribute to the model, that auto converts them to a Carbon date for easier use.
 
@@ -36,15 +38,17 @@ Or you can run the following for production
 
     npm run build
 
-### Production CHanges / Additional Functionality
-If i was to do this as a production application, I would do the following additional features or changes:
+### Production Changes / Additional Functionality
+Alternatively as a production application, I would do the following additional features or changes:
 
 #### New table structure
-When working with the data, I would have parse and store the data into multiple tables:
-    * Forests - This will be all the forest information.
-    * Fire - Which will be all the fire information with the forest id
-    * Unit - Which will be all Agency Units
-    * Agency - All information on the Agencys
+When working with the data, I would have parsed and stored the data into multiple tables:
+
+* Forests - This would store all forest information, and would have a foreign key linking to the unit that maintains the forest.
+* Fire - This would store all fire information, it would have a foreign key linking to the forest ID.
+* Agency - This would be all agency information.
+* Unit - This would be all units, and would have a foreign key linking to the agency table.
+    
 The above will allow me to create individual models for the data, and then link them together using relationships. This should allow us to optimise the speed.
 
 For example, the above would mean the index would become
@@ -70,10 +74,10 @@ The fires index will then become
 This again will be indexed and will speed up laoding speed.
 
 #### Additional Functionality
-* Link up with google maps using the longitude and latitude to display the location on a map of the fire location.
+* Link up with Google Maps using the longitude and latitude to display the location on a map of the fire location.
 * Add ability to export fire data to Excel, for dealing with additional data reporting.
 * Add filtering on the fire table so this can be further filtered on items such as discovery date, cause etc. 
 * Add a dashboard for each forest that will show a summary of information like number of fires through the last year, statistics on cause, this will allow
 the users to find statistical information easier.
-* I would also add factories and tests to the application, the reason they werent currently added was due to the way the database is currently structured, it was difficult to write
-factories. For example, Forests are technically in the fire table rather than an individual table, so the factory would have to create a full fire table.
+* I would also add factories and tests to the application, the reason they weren't currently added was due to the way the database is currently structured, it was difficult to write
+factories. For example, Forests are technically in the fire table rather than an individual table, therefore the factory would have to create a full fire table.
