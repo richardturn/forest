@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Unit;
+use Illuminate\View\View;
 
 class UnitController extends Controller
 {
-    /**
-     * Display the specified resource.
-     */
-    public function show(Unit $unit)
+    public function show(Unit $unit): View
     {
         return view('unit.show')
             ->with('unit', $unit);

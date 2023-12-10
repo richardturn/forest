@@ -4,26 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 use PDO;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function index(): View
     {
         $forests = DB::table('Fires')
             ->select(
@@ -42,7 +28,7 @@ class HomeController extends Controller
             ->with('forests', $forests);
     }
 
-    public function nativePHP(Request $request)
+    public function nativePHP(Request $request): View
     {
         $location = database_path('forest.sqlite');
         $myPDO = new PDO("sqlite:$location");
