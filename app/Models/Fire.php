@@ -11,37 +11,26 @@ class Fire extends Model
     use HasFactory;
 
     protected $fillable = [
-        'FOD_ID',
         'FPA_ID',
-        'SOURCE_SYSTEM_TYPE', //federal, nonfederal, or interagency
-        'SOURCE_SYSTEM',
-        'LOCAL_FIRE_REPORT_ID',
-        'LOCAL_INCIDENT_ID',
-        'FIRE_CODE',
         'FIRE_NAME',
-        'FIRE_YEAR',
         'DISCOVERY_DATE',
         'DISCOVERY_TIME',
-        'STAT_CAUSE_CODE',
         'STAT_CAUSE_DESCR',
         'CONT_DATE',
         'CONT_TIME',
-        'FIRE_SIZE',
         'FIRE_SIZE_CLASS',
-        'LATITUDE',
-        'LONGITUDE',
-        'OWNER_CODE',
-        'STATE',
     ];
 
-    public function getDiscoveryDateAttribute($value)
+    public $timestamps = false;
+
+    public function getDiscoveryDateAttribute($value): Carbon
     {
-        return Carbon::parse(jdtojulian($value))->format('d/m/Y');
+        return Carbon::parse(jdtojulian($value));
     }
 
-    public function getContainedDateAttribute($value)
+    public function getContainedDateAttribute($value): Carbon
     {
-        return Carbon::parse(jdtojulian($this->CONT_DATE))->format('d/m/Y');
+        return Carbon::parse(jdtojulian($this->CONT_DATE));
     }
 
     //relation
