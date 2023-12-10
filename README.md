@@ -15,7 +15,7 @@ The models have had to be overridden to point to the correct table and the corre
 
 In the AppServiceProvider.php, I have added some Blade Directives, this means that when using things like numbers and dates, you can use the directive to display them in the correct format. 
 
-
+Due to the discovery and contained dates also being in the Julian format, I have added an attribute to the model, that auto converts them to a Carbon date for easier use.
 
 ### Commands
 To serve the application you can use  the below command in the base directory. 
