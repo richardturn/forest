@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fire;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class ForestFireController extends Controller
+class FireController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,12 +36,10 @@ class ForestFireController extends Controller
      */
     public function show(string $name)
     {
-        $fires = DB::table('Fires')->where('NWCG_REPORTING_UNIT_NAME', $name)->paginate(15);
+        $fires = Fire::where('NWCG_REPORTING_UNIT_NAME', $name)->paginate(15);
 
         return view('forest.show')
             ->with('fires', $fires);
-
-        dd($fires);
     }
 
     /**

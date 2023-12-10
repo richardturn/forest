@@ -13,16 +13,16 @@
                 <tbody>
                     @foreach($forests as $forest)
                         <tr>
-                            <td><a href="{{route('unit.show',$forest->id )}}">
-                                    {{ $forest->id }}
+                            <td><a href="{{route('unit.show',$forest['id'] )}}">
+                                    {{ $forest['id'] }}
                                 </a>
                             </td>
                             <td>
-                                {{ $forest->agency }}
+                                {{ $forest['agency'] }}
                             </td>
                             <td>
-                                <a href="{{ route('forest.show', $forest->name) }}">
-                                {{ $forest->name }}
+                                <a href="{{ route('forest.show', $forest['name']) }}">
+                                {{ $forest['name'] }}
                                 </a>
                             </td>
                         </tr>
@@ -30,7 +30,7 @@
                 </tbody>
             </table>
 
-            {{ $forests->links() }}
+{{--            {{ $forests->links() }}--}}
         </div>
     </div>
 </div>
