@@ -1,7 +1,7 @@
 # Forest Fire App
 
 ### Summary
- I have used Laravel Breeze for the scaffold, to quickly have a good-looking design.
+ I have used Laravel Breeze for the scaffold, to quickly have a good-looking design. For my local development environment i use Laravel Valet.
 
 The application assumes the sqlite database is located in the database folder. Upon connecting, I take a distinct of the NWCG_REPORTING_AGENCY, NWCG_REPORTING_UNIT_ID and NWCG_REPORTING_UNIT_NAME, as well as the 
 count of the number of fires. I paginate this data and then use it to display all unique forests for the main index. 
