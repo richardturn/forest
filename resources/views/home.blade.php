@@ -9,6 +9,7 @@
                     <th scope="col">Unit ID</th>
                     <th scope="col">Agency</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Total Fires</th>
                 </thead>
                 <tbody>
                     @foreach($forests as $forest)
@@ -24,6 +25,9 @@
                                 <a href="{{ route('forest.show', $forest->name) }}">
                                 {{ $forest->name }}
                                 </a>
+                            </td>
+                            <td>
+                                @number($forest->total_fires)
                             </td>
                         </tr>
                     @endforeach

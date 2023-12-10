@@ -30,8 +30,11 @@ class HomeController extends Controller
                 'NWCG_REPORTING_AGENCY as agency',
                 'NWCG_REPORTING_UNIT_ID as id',
                 'NWCG_REPORTING_UNIT_NAME as name',
+                DB::raw('COUNT(*) as total_fires')
+
             )
             ->orderBy('NWCG_REPORTING_UNIT_NAME')
+            ->groupBy(['NWCG_REPORTING_AGENCY', 'NWCG_REPORTING_UNIT_ID', 'NWCG_REPORTING_UNIT_NAME'])
             ->distinct('NWCG_REPORTING_UNIT_NAME')
             ->paginate(15);
 
