@@ -3,7 +3,7 @@
 ### Summary
  I have used Laravel Breeze for the scaffold, to quickly have a good-looking design. For my local development environment i use Laravel Valet.
 
-The application assumes the sqlite database is located in the database folder. Upon connecting, I take a distinct of the NWCG_REPORTING_AGENCY, NWCG_REPORTING_UNIT_ID and NWCG_REPORTING_UNIT_NAME, as well as the 
+The application assumes the sqlite database is located in the database folder with the name forest.sqlite. Upon connecting, I take a distinct of the NWCG_REPORTING_AGENCY, NWCG_REPORTING_UNIT_ID and NWCG_REPORTING_UNIT_NAME, as well as the 
 count of the number of fires. I paginate this data and then use it to display all unique forests for the main index. 
 
 I have added a show for the agency, which takes the unit id and connects to the NWCG_UnitIDActive_20170109 to return additional information of the Unit, this has been added as a model.
