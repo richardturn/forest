@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/forest/{name}', [App\Http\Controllers\FireController::class, 'show'])->name('forest.show');
+Route::get('/agency/{unit}', [App\Http\Controllers\UnitController::class, 'show'])->name('unit.show');
+
+Route::get('/native_php', [App\Http\Controllers\HomeController::class, 'nativePHP'])->name('native_php');
